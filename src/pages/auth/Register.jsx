@@ -1,36 +1,41 @@
 import '../../assets/styles/auth.css'
 import {useState} from "react";
+import {Link, useNavigate} from "react-router-dom";
 
-function Register () {
+function Register() {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const sendRequest = (url, method = "POST", data) => {
     const baseUrl = "https://daily-planner-1dz0.onrender.com/";
-    fetch(baseUrl+url, {
+    fetch(baseUrl + url, {
       method: method,
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
-      body:  JSON.stringify(data)
+      body: JSON.stringify(data)
     })
-      .then(function(response){
+      .then(function (response) {
         return response.json();
       })
-      .then(function(data){
-        console.log(data)
+      .then(function (data) {
+        if (data.status && data.authToken) {
+           localStorage.setItem('auth-token', data.authToken);
+          return navigate('/');
+        }
       });
   }
 
   const handleInputChange = (event) => {
-    if(event.target.name === 'username') {
+    if (event.target.name === 'username') {
       setUserName(event.target.value);
     } else if (event.target.name === 'password') {
       setPassword(event.target.value);
     }
   }
-  const handleClick = (e) =>{
+  const handleClick = (e) => {
     e.preventDefault();
     const authData = {
       userName: userName,
@@ -51,7 +56,7 @@ function Register () {
       </div>
       <button type='submit' onClick={handleClick}>Register</button>
     </form>
-    <p>If you have an account, <a href="#">Login</a> here</p>
+    <p>If you have an account, <Link to="/auth/login">Login</Link> here</p>
   </div>
 }
 

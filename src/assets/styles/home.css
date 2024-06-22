@@ -4,6 +4,10 @@
     border-radius: 10px;
 }
 
+.error-message {
+    color: indianred;
+}
+
 .task{
     display: flex;
     justify-content: space-between;
@@ -14,12 +18,23 @@
     border-radius: 10px;
     margin-bottom: 1rem;
 }
+.task i {
+    display: inline-flex;
+    align-items: center;
+    font-size: 18px;
+    cursor: pointer;
+}
 .done{
     text-decoration: line-through;
 }
 
 .task p {
     font-size: 16px;
+}
+
+.task div{
+    display: flex;
+    gap: 1rem;
 }
 
 .plans-create{

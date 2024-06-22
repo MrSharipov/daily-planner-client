@@ -1,13 +1,17 @@
 import '../../assets/styles/checkbox.css'
 import {useState} from "react";
-function AppFormCheckboxInput({isChecked}) {
+function AppFormCheckboxInput({id, isChecked, handleChange}) {
   const [checked, setChecked] = useState(isChecked);
+  const handleOnChange = () => {
+    setChecked(!checked);
+    handleChange(id, !checked);
+  }
   return <div className="appFormCheckboxInput">
     <input
       type="checkbox"
       checked={checked}
       disabled={isChecked}
-      onChange={() => setChecked(!checked)}
+      onChange={handleOnChange}
     />
   </div>
 }

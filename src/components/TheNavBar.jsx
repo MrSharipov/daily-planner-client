@@ -1,7 +1,11 @@
 import '../assets/styles/navbar.css'
 import {Link} from "react-router-dom";
 function TheNavBar() {
-  const isLoggedIn = localStorage.getItem("token");
+  const logOut = () => {
+    localStorage.clear();
+    window.location.reload();
+  }
+  const isLoggedIn = localStorage.getItem("auth-token");
   return <div className="app-navbar">
     <ul>
       <li className="brand">
@@ -9,7 +13,7 @@ function TheNavBar() {
       </li>
       <li className="nav-item">
         {isLoggedIn ?
-          <Link to="#">Log out</Link>
+          <p className="logout" onClick={logOut}>Log out</p>
           :
           <Link to="/auth/login">Login</Link> }
 
