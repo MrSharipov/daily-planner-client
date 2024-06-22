@@ -1,6 +1,7 @@
 import '../../assets/styles/auth.css'
 import {Link, useNavigate} from "react-router-dom";
 import {useState} from "react";
+import {API_URL} from "../../config/config.js";
 
 function Login () {
   const navigate = useNavigate();
@@ -16,8 +17,7 @@ function Login () {
   }
 
   const sendRequest = (url, method = "POST", data) => {
-    const baseUrl = "https://daily-planner-1dz0.onrender.com/";
-    fetch(baseUrl + url, {
+    fetch(API_URL + url, {
       method: method,
       headers: {
         'Accept': 'application/json',

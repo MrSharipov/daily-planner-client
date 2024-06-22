@@ -1,6 +1,7 @@
 import '../../assets/styles/auth.css'
 import {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
+import {API_URL} from "../../config/config.js";
 
 function Register() {
   const [userName, setUserName] = useState('');
@@ -8,8 +9,7 @@ function Register() {
   const navigate = useNavigate();
 
   const sendRequest = (url, method = "POST", data) => {
-    const baseUrl = "https://daily-planner-1dz0.onrender.com/";
-    fetch(baseUrl + url, {
+    fetch(API_URL + url, {
       method: method,
       headers: {
         'Accept': 'application/json',

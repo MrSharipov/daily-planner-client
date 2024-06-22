@@ -4,7 +4,7 @@ function AppFormCheckboxInput({id, isChecked, handleChange}) {
   const [checked, setChecked] = useState(isChecked);
   const handleOnChange = () => {
     setChecked(!checked);
-    handleChange(id, !checked);
+    handleChange(id);
   }
   return <div className="appFormCheckboxInput">
     <input
